@@ -9,8 +9,7 @@ class Group
 
   def add_people(people_list)
     # add people, but ensure no-one added twice!
-    return if !people_list.class == Array
-    @members.concat people_list.uniq
+    @members.concat(people_list.uniq) if people_list.class == Array
   end
 
 end
