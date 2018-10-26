@@ -10,9 +10,7 @@ class Group
   def add_people(people_list)
     # add people, but ensure no-one added twice!
     return if !people_list.class == Array
-    people_list.each do |customer|
-      @members << customer if !@members.include? customer
-    end
+    @members.concat people_list.uniq
   end
 
 end
