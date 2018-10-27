@@ -2,6 +2,7 @@ require("minitest/autorun")
 require("minitest/rg")
 require_relative("../venue")
 require_relative("../room")
+require_relative("../group")
 
 class TestVenue < MiniTest::Test
 
@@ -48,6 +49,14 @@ class TestVenue < MiniTest::Test
     @venue.add_rooms([room1])
     cost = @venue.get_room_price(room1)
     assert_equal(200.0, cost)
+  end
+
+  def test_room__fill_with_group_can_afford
+    room1=Room.new("Kylie Minogue Room", 20)
+    @venue.add_rooms([room1])
+    group1 = make_test_group("TestGroup-20",20,15.0)
+    @venue.add_group_to_room(group1,room1)
+    assert_equal(group1.members, room1.customers)
   end
 
 end

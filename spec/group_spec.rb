@@ -37,4 +37,20 @@ class TestGroup < MiniTest::Test
     assert_equal(no_dupes, @group.members)
   end
 
+  def test_group__make_test_group
+    group = make_test_group("Test Group",10,20.0)
+    assert_equal(Group, group.class)
+  end
+
+  def test_group_make_test_group__funds_set
+    group = make_test_group("Test Group",10,20.0)
+    assert_equal(true, group.members.all? {|person| person.funds==20.0})
+  end
+
+  def test_group_make_test_group__get_total_funds
+    group = make_test_group("Test Group",10,20.0)
+    assert_equal(200.0, group.get_total_funds)
+  end
+
+
 end
