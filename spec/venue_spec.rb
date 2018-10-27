@@ -43,4 +43,11 @@ class TestVenue < MiniTest::Test
     assert_equal(1140.0, @venue.takings)
   end
 
+  def test_get_room__price
+    room1=Room.new("Kylie Minogue Room", 20)
+    @venue.add_rooms([room1])
+    cost = @venue.get_room_price(room1)
+    assert_equal(200.0, cost)
+  end
+
 end

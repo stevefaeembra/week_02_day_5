@@ -15,4 +15,9 @@ class Venue
   def add_rooms(room_list)
     @rooms.concat(room_list)
   end
+
+  def get_room_price(room)
+    return if not @rooms.member? room
+    return 10.0 * room.capacity
+  end
 end
