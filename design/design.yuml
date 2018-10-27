@@ -1,12 +1,1 @@
-[Venue|+name:String;-rooms:Array of Room;-till:Float| increase_till(amount);FindRoomForGroup(Group):Room; FindRoomForIndividual(Customer):Room],
-[Room|+name:String;-capacity:integer;customers:Array of Customer;current_song:Song;-playlist:Playlist;|add_person_to_room(Customer);add_group_to_room(Group);remove_person_from_room(Customer);change_song(Song)],
-[Group|+name:String;members:Array of Customer|add_customer(Customer)]
-[Customer|+name:String;-fave_song:Song;-funds:Float|pay_money(amount):boolean]
-[Playlist|songs:Array of Song|add_song(Song)],
-[Song|Title:String],
-[Room]++-->1[Playlist],
-[Playlist]++-->0..M[Song],
-[Venue]1++-->1..M[Room],
-[Room]1+-- customers--> 1..M[Customer],
-[Group]1++-members->1..M[Customer]
-[Customer]-- favourite -->1[Song]
+[Venue|+name:String;-rooms:Array of Room;-takings:Float| add_room(Room);increase_takings(amount);FindRoomForGroup(Group):Room; FindRoomForIndividual(Customer):Room], [Room|+name:String;+capacity:integer;-customers:Array of Customer;current_song:Song;-playlist:Playlist;|add_person_to_room(Customer);add_group_to_room(Group);remove_person_from_room(Customer);change_song(Song)], [Group|+name:String;members:Array of Customer|add_customer(Customer)], [Customer|+name:String;-fave_song:Song;-funds:Float|pay_money(amount):boolean], [Playlist|songs:Array of Song|add_song(Song)], [Song|Title:String], [Room]++-->1[Playlist], [Playlist]++-->0..M[Song], [Venue]1++-->1..M[Room], [Room]1+-- customers--> 1..M[Customer], [Group]1++-members->1..M[Customer], [Customer]-- favourite -->1[Song]
