@@ -54,9 +54,14 @@ class TestVenue < MiniTest::Test
   def test_room__fill_with_group_can_afford
     room1=Room.new("Kylie Minogue Room", 20)
     @venue.add_rooms([room1])
+    # make group of 20 with £15 each.
     group1 = make_test_group("TestGroup-20",20,15.0)
     @venue.add_group_to_room(group1,room1)
     assert_equal(group1.members, room1.customers)
+    # all customers should now have 5.0 (20 person room=£200, £10 each)
+    assert_equal(true, group1.members.all? {|p| p.funds==5.0})
+    # venue should now have £1000+£200
+    assert_equal(1200.0, @venue.takings)
   end
 
 end

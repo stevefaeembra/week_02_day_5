@@ -30,9 +30,14 @@ class Venue
     price = get_room_price(room)
     funds = group.get_total_funds()
     return false if funds<price
+    # check all individuals have enough money to get in.
+    price_per_person = price.to_f / group.members.count.to_f
+    return false if not group.members.all? {|person| person.funds >= price_per_person}
     # finally we can shovel them in!
     group.members.each do |person|
       room.add_customer(person)
+      person.pay_money(price_per_person)
+      increase_takings(price_per_person)
     end
   end
 end

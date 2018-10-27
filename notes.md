@@ -8,3 +8,5 @@ I've just realised that Ruby is very similar to SmallTalk, which is the first la
 I have a particular file from a distant project popping at random into my spec directory. No idea why this is happening.
 
 Found a way to test private things; implement the read accessor, run the test, then mark the test as skipped, then remove read accessor. That way get to test it without having to expose it to outside world.
+
+Found the .all? enumerator very useful.
