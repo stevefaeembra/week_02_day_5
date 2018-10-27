@@ -64,4 +64,21 @@ class TestVenue < MiniTest::Test
     assert_equal(1200.0, @venue.takings)
   end
 
+  def test_room__fill_with_group_cant_afford
+    room1=Room.new("Kylie Minogue Room", 20)
+    @venue.add_rooms([room1])
+    # make group of 20 with £15 each.
+    group1 = make_test_group("TestGroup-20-poor",20,5.0)
+    assert_equal(false,@venue.add_group_to_room(group1,room1))
+  end
+
+  def test_room__fill_with_group_room__room_too_small
+    room1=Room.new("Kylie Minogue Room", 10)
+    @venue.add_rooms([room1])
+    # make group of 20 with £15 each.
+    group1 = make_test_group("TestGroup-20-poor",20,125.0)
+    assert_equal(false,@venue.add_group_to_room(group1,room1))
+    assert_equal(0, @venue.rooms[0].customers.length)
+  end
+
 end
