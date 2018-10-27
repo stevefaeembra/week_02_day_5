@@ -1,6 +1,6 @@
 class Venue
 
-  attr_reader :name, :takings
+  attr_reader :name, :takings, :rooms
 
   def initialize(name, takings)
     @name = name
@@ -12,4 +12,7 @@ class Venue
     @takings += amount
   end
 
+  def add_rooms(room_list)
+    @rooms.concat(room_list)
+  end
 end
